@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.4)
+project(1_4_palindrome_permutation)
+
+add_executable(1_4_palindrome_permutation 1_4_palindrome_permutation.cpp)
+target_include_directories(1_4_palindrome_permutation PUBLIC ${GTEST_INCLUDE_DIRS})
+target_link_libraries(1_4_palindrome_permutation ${GTEST_LIBRARIES})
+
+enable_testing()
+add_test(NAME 1_4_palindrome_permutation COMMAND 1_4_palindrome_permutation)
