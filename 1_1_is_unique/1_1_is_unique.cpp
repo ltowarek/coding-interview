@@ -1,5 +1,4 @@
 #include "gtest/gtest.h"
-#include "1_1_is_unique.cpp"
 
 bool is_unique() {
   return true;
