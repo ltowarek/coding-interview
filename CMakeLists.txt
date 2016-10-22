@@ -13,3 +13,4 @@ enable_testing()
 
 add_subdirectory(1_1_is_unique)
 add_subdirectory(1_2_check_permutation)
+add_subdirectory(1_3_urlify)
