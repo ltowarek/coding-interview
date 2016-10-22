@@ -5,7 +5,7 @@
 
 #include <algorithm>
 
-bool is_unique(const std::string &s) {
+bool IsUnique(const std::string &s) {
   auto sorted = s;
   std::sort(sorted.begin(), sorted.end());
   for (int i = 1; i < sorted.size(); ++i) {
@@ -17,25 +17,25 @@ bool is_unique(const std::string &s) {
 }
 
 TEST(is_unique_test, EmptyString) {
-  EXPECT_EQ(is_unique(""), true);
+  EXPECT_EQ(IsUnique(""), true);
 }
 
 TEST(is_unique_test, 2Chars_Duplicated) {
-  EXPECT_EQ(is_unique("aa"), false);
+  EXPECT_EQ(IsUnique("aa"), false);
 }
 
 TEST(is_unique_test, 2Chars_Unique) {
-  EXPECT_EQ(is_unique("ab"), true);
+  EXPECT_EQ(IsUnique("ab"), true);
 }
 
 TEST(is_unique_test, 4Chars_Duplicated) {
-  EXPECT_EQ(is_unique("aaaa"), false);
+  EXPECT_EQ(IsUnique("aaaa"), false);
 }
 
 TEST(is_unique_test, 4Chars_Unique) {
-  EXPECT_EQ(is_unique("syen"), true);
+  EXPECT_EQ(IsUnique("abcd"), true);
 }
 
 TEST(is_unique_test, 4Chars_Duplicated_Start_End) {
-  EXPECT_EQ(is_unique("abca"), false);
+  EXPECT_EQ(IsUnique("abca"), false);
 }
