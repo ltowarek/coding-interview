@@ -12,3 +12,4 @@ add_subdirectory(${GTEST_ROOT} EXCLUDE_FROM_ALL)
 enable_testing()
 
 add_subdirectory(1_1_is_unique)
+add_subdirectory(1_2_check_permutation)
