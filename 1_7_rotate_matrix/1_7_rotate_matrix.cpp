@@ -9,8 +9,8 @@ using Matrix = std::array<std::array<T, N>, N>;
 
 template <class T, size_t N>
 void Print(const Matrix<T, N> &m) {
-  for (auto &row: m) {
-    for (auto &value: row) {
+  for (const auto &row: m) {
+    for (const auto &value: row) {
       printf("%d ", value);
     }
     printf("\n");
