@@ -3,17 +3,15 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-struct Node {
+template <class T> struct Node {
   Node(T _data) : next(nullptr), data(_data) {}
 
-  Node* next;
+  Node *next;
   T data;
 };
 
-template <class T>
-Node<T>* DetectLoop(Node<T> &list) {
-  auto *output = static_cast<Node<T>*>(nullptr);
+template <class T> Node<T> *DetectLoop(Node<T> &list) {
+  auto *output = static_cast<Node<T> *>(nullptr);
 
   auto *slow_runner = &list;
   auto *fast_runner = &list;

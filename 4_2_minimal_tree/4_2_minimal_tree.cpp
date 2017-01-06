@@ -4,18 +4,16 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-struct Node {
-  Node(T _data): data(_data), left(nullptr), right(nullptr) {}
+template <class T> struct Node {
+  Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
   T data;
   std::unique_ptr<Node<T>> left;
   std::unique_ptr<Node<T>> right;
 };
 
-template <class T>
-struct BST {
-  BST(): root(nullptr) {}
-  BST(std::unique_ptr<Node<T>> _root): root(std::move(_root)) {}
+template <class T> struct BST {
+  BST() : root(nullptr) {}
+  BST(std::unique_ptr<Node<T>> _root) : root(std::move(_root)) {}
 
   bool operator==(const BST<T> &rhs) {
     return AreIdentical(root.get(), rhs.root.get());
@@ -35,7 +33,7 @@ struct BST {
     return false;
   }
 
-  static std::ostream& PrintInorder(std::ostream &stream, const Node<T> *node) {
+  static std::ostream &PrintInorder(std::ostream &stream, const Node<T> *node) {
     if (node == nullptr) {
       return stream;
     }
@@ -50,18 +48,18 @@ struct BST {
   std::unique_ptr<Node<T>> root;
 };
 
-template <class T>
-bool operator==(const BST<T> &lhs, const BST<T> &rhs) {
+template <class T> bool operator==(const BST<T> &lhs, const BST<T> &rhs) {
   return BST<T>::AreIdentical(lhs.root.get(), rhs.root.get());
 }
 
 template <class T>
-std::ostream& operator<<(std::ostream &stream, const BST<T> &bst) {
+std::ostream &operator<<(std::ostream &stream, const BST<T> &bst) {
   return BST<T>::PrintInorder(stream, bst.root.get());
 }
 
 template <class T>
-std::unique_ptr<Node<T>> CreateMinBST(const std::vector<T> input, const int start, const int end) {
+std::unique_ptr<Node<T>> CreateMinBST(const std::vector<T> input,
+                                      const int start, const int end) {
   if (end < start) {
     return nullptr;
   }
@@ -72,8 +70,7 @@ std::unique_ptr<Node<T>> CreateMinBST(const std::vector<T> input, const int star
   return std::move(node);
 }
 
-template <class T>
-BST<T> CreateMinBST(const std::vector<T> input) {
+template <class T> BST<T> CreateMinBST(const std::vector<T> input) {
   return BST<T>(std::move(CreateMinBST(input, 0, input.size() - 1)));
 }
 

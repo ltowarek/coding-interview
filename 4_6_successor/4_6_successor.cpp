@@ -4,18 +4,16 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-struct Node {
-  Node(T _data, Node<T> *_parent): data(_data), parent(_parent),
-                                   left(nullptr), right(nullptr) {}
+template <class T> struct Node {
+  Node(T _data, Node<T> *_parent)
+      : data(_data), parent(_parent), left(nullptr), right(nullptr) {}
   T data;
   std::unique_ptr<Node<T>> left;
   std::unique_ptr<Node<T>> right;
-  Node<T>* parent;
+  Node<T> *parent;
 };
 
-template <class T>
-Node<T>* LeftMostChild(Node<T> *node) {
+template <class T> Node<T> *LeftMostChild(Node<T> *node) {
   if (node == nullptr) {
     return nullptr;
   }
@@ -26,8 +24,7 @@ Node<T>* LeftMostChild(Node<T> *node) {
   return node;
 }
 
-template <class T>
-Node<T>* NotTraversedParent(Node<T> *node) {
+template <class T> Node<T> *NotTraversedParent(Node<T> *node) {
   if (node == nullptr) {
     return nullptr;
   }
@@ -40,8 +37,7 @@ Node<T>* NotTraversedParent(Node<T> *node) {
   return tmp_parent;
 }
 
-template <class T>
-Node<T>* GetSuccessor(Node<T> *node) {
+template <class T> Node<T> *GetSuccessor(Node<T> *node) {
   if (node == nullptr) {
     return nullptr;
   }

@@ -3,11 +3,10 @@
 // the elements into any other data structure (such as an array). The stack
 // supports the following operations: push, pop, peek, and isEmpty.
 
-#include <stack>
 #include "gtest/gtest.h"
+#include <stack>
 
-template <class T>
-void SortStack(std::stack<T> &stack) {
+template <class T> void SortStack(std::stack<T> &stack) {
   auto tmp_stack = std::stack<T>();
   while (!stack.empty()) {
     auto top = stack.top();

@@ -11,7 +11,7 @@ std::string CompressString(const std::string &s) {
   auto current_char_count = size_t{0};
   for (auto i = 0; i < s.size(); ++i) {
     current_char_count++;
-    if (i + 1 >= s.size() || s[i] != s[i+1]) {
+    if (i + 1 >= s.size() || s[i] != s[i + 1]) {
       output += s[i];
       output += std::to_string(current_char_count);
       current_char_count = 0;

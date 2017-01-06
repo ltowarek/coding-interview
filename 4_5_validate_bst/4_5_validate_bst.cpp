@@ -3,18 +3,16 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-struct Node {
-  Node(T _data): data(_data), left(nullptr), right(nullptr) {}
+template <class T> struct Node {
+  Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
   T data;
   std::unique_ptr<Node<T>> left;
   std::unique_ptr<Node<T>> right;
 };
 
-template <class T>
-struct BinaryTree {
-  BinaryTree(): root(nullptr) {}
-  BinaryTree(std::unique_ptr<Node<T>> _root): root(std::move(_root)) {}
+template <class T> struct BinaryTree {
+  BinaryTree() : root(nullptr) {}
+  BinaryTree(std::unique_ptr<Node<T>> _root) : root(std::move(_root)) {}
 
   std::unique_ptr<Node<T>> root;
 };
@@ -27,19 +25,18 @@ bool ValidateBST(const Node<T> *node, const Node<T> *min, const Node<T> *max) {
 
   if ((min != nullptr && node->data <= min->data) ||
       (max != nullptr && node->data > max->data)) {
-        return false;
+    return false;
   }
 
   if ((!ValidateBST(node->left.get(), min, node)) ||
-       !ValidateBST(node->right.get(), node, max)) {
+      !ValidateBST(node->right.get(), node, max)) {
     return false;
   }
 
   return true;
 }
 
-template <class T>
-bool ValidateBST(const BinaryTree<T> &input) {
+template <class T> bool ValidateBST(const BinaryTree<T> &input) {
   return ValidateBST<T>(input.root.get(), nullptr, nullptr);
 }
 

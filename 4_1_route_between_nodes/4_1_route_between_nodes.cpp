@@ -1,33 +1,32 @@
 // Route Between Nodes: Given a directed graph, design an algorithm to find out
 // whether there is a route between two nodes.
 
-#include <queue>
 #include "gtest/gtest.h"
+#include <queue>
 
-template <class T>
-struct Node {
-  Node(T _data): data(_data) {}
+template <class T> struct Node {
+  Node(T _data) : data(_data) {}
   T data;
-  std::vector<Node<T>*> children;
+  std::vector<Node<T> *> children;
 };
 
-template <class T>
-struct Graph {
+template <class T> struct Graph {
   std::vector<std::unique_ptr<Node<T>>> nodes;
 };
 
 template <class T>
-bool IsRouteBetween(const Graph<T> &graph, const Node<T> &start, const Node<T> &end) {
+bool IsRouteBetween(const Graph<T> &graph, const Node<T> &start,
+                    const Node<T> &end) {
   if (&start == &end) {
     return true;
   }
 
-  auto visited = std::map<const Node<T>*, bool>{};
+  auto visited = std::map<const Node<T> *, bool>{};
   for (const auto &node : graph.nodes) {
     visited[node.get()] = false;
   }
 
-  auto queue = std::queue<const Node<T>*>{};
+  auto queue = std::queue<const Node<T> *>{};
   visited[&start] = true;
   queue.push(&start);
 

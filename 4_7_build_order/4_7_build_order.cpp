@@ -14,16 +14,14 @@
 #include <exception>
 #include <utility>
 
-template <class T> 
-struct Node {
+template <class T> struct Node {
   Node(T _data) : data(_data) {}
   T data;
   std::vector<Node *> children;
   std::vector<Node *> parents;
 };
 
-template <class T> 
-class Graph {
+template <class T> class Graph {
 public:
   Node<T> *GetNode(const T data) {
     for (const auto &node : nodes_) {

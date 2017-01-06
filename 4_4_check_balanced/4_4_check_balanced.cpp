@@ -3,34 +3,29 @@
 // such that the heights of the two subtrees of any node never differ by more
 // than one.
 
-#include <exception>
 #include "gtest/gtest.h"
+#include <exception>
 
-class NotBalancedTree: public std::exception {
+class NotBalancedTree : public std::exception {
 public:
-  virtual const char* what() const throw() {
-    return "Tree is not balanced";
-  }
+  virtual const char *what() const throw() { return "Tree is not balanced"; }
 };
 
-template <class T>
-struct Node {
-  Node(T _data): data(_data), left(nullptr), right(nullptr) {}
+template <class T> struct Node {
+  Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
   T data;
   std::unique_ptr<Node<T>> left;
   std::unique_ptr<Node<T>> right;
 };
 
-template <class T>
-struct BinaryTree {
-  BinaryTree(): root(nullptr) {}
-  BinaryTree(std::unique_ptr<Node<T>> _root): root(std::move(_root)) {}
+template <class T> struct BinaryTree {
+  BinaryTree() : root(nullptr) {}
+  BinaryTree(std::unique_ptr<Node<T>> _root) : root(std::move(_root)) {}
 
   std::unique_ptr<Node<T>> root;
 };
 
-template <class T>
-int CheckBalanced(const Node<T> *node) {
+template <class T> int CheckBalanced(const Node<T> *node) {
   if (node == nullptr) {
     return -1;
   }
@@ -46,8 +41,7 @@ int CheckBalanced(const Node<T> *node) {
   }
 }
 
-template <class T>
-bool CheckBalanced(const BinaryTree<T> &input) {
+template <class T> bool CheckBalanced(const BinaryTree<T> &input) {
   try {
     CheckBalanced(input.root.get());
     return true;

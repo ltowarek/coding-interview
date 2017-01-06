@@ -5,11 +5,12 @@
 // "right partition"; it does not need to appear between the left and right
 // partitions.
 
-#include <forward_list>
 #include "gtest/gtest.h"
+#include <forward_list>
 
 template <class T>
-std::forward_list<T> Partition(const std::forward_list<T> list, const size_t partition) {
+std::forward_list<T> Partition(const std::forward_list<T> list,
+                               const size_t partition) {
   auto output = std::forward_list<T>{};
   auto current = list.begin();
   auto tail = output.begin();

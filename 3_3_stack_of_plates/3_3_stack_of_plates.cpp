@@ -9,17 +9,16 @@
 // Implement a function popAt(int index) which performs a pop operation on a
 // specific sub-stack.
 
-#include <stack>
 #include "gtest/gtest.h"
+#include <stack>
 
-template <class T>
-class SetOfStacks {
+template <class T> class SetOfStacks {
 public:
-  SetOfStacks(const size_t max_sub_stack_size) :
-    max_sub_stack_size_(max_sub_stack_size) {}
+  SetOfStacks(const size_t max_sub_stack_size)
+      : max_sub_stack_size_(max_sub_stack_size) {}
 
-  void Push(const T& data) {
-    auto* last_stack = LastStack();
+  void Push(const T &data) {
+    auto *last_stack = LastStack();
     if (last_stack != nullptr && last_stack->size() < max_sub_stack_size_) {
       last_stack->push(data);
     } else {
@@ -30,7 +29,7 @@ public:
   }
 
   void Pop() {
-    auto* stack = LastStack();
+    auto *stack = LastStack();
     stack->pop();
     if (stack->empty()) {
       stacks_.pop_back();
@@ -38,7 +37,7 @@ public:
   }
 
   void PopAt(const size_t stack_id) {
-    auto& stack = stacks_[stack_id];
+    auto &stack = stacks_[stack_id];
     stack.pop();
     if (stack.empty()) {
       stacks_.erase(stacks_.begin() + stack_id);
@@ -46,21 +45,19 @@ public:
   }
 
   T Top() {
-    auto* stack = LastStack();
+    auto *stack = LastStack();
     return stack->top();
   }
 
   bool IsEmpty() {
-    auto* stack = LastStack();
+    auto *stack = LastStack();
     return stack == nullptr || stack->empty();
   }
 
-  size_t NumberOfStacks() const {
-    return stacks_.size();
-  }
+  size_t NumberOfStacks() const { return stacks_.size(); }
 
 private:
-  std::stack<T>* LastStack() {
+  std::stack<T> *LastStack() {
     if (stacks_.empty()) {
       return nullptr;
     }
@@ -131,8 +128,8 @@ TEST(stack_of_plates_test, PopAtWholeStack) {
   stack.Push(5);
   stack.Push(6);
 
-  stack.PopAt(1);  // Remove 4
-  stack.PopAt(1);  // Remove 3
+  stack.PopAt(1); // Remove 4
+  stack.PopAt(1); // Remove 3
   EXPECT_EQ(stack.Top(), 6);
   EXPECT_EQ(stack.NumberOfStacks(), 2);
 
@@ -155,7 +152,7 @@ TEST(stack_of_plates_test, PopAtPartOfStack) {
   stack.Push(5);
   stack.Push(6);
 
-  stack.PopAt(1);  // Remove 4
+  stack.PopAt(1); // Remove 4
   EXPECT_EQ(stack.Top(), 6);
   EXPECT_EQ(stack.NumberOfStacks(), 3);
 

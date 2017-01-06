@@ -3,34 +3,27 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-class MultiStack {
+template <class T> class MultiStack {
 public:
-  MultiStack(const size_t _max_stack_size) :
-    max_stack_size(_max_stack_size),
-    sizes(std::vector<T>(number_of_stacks, 0)),
-    values(std::vector<T>(max_stack_size * number_of_stacks)) {}
+  MultiStack(const size_t _max_stack_size)
+      : max_stack_size(_max_stack_size),
+        sizes(std::vector<T>(number_of_stacks, 0)),
+        values(std::vector<T>(max_stack_size * number_of_stacks)) {}
 
   void Push(const size_t stack_id, const T data) {
     sizes[stack_id]++;
     values[IndexOfTop(stack_id)] = data;
   }
 
-  void Pop(const size_t stack_id) {
-    sizes[stack_id]--;
-  }
+  void Pop(const size_t stack_id) { sizes[stack_id]--; }
 
-  T Top(const size_t stack_id) const {
-    return values[IndexOfTop(stack_id)];
-  }
+  T Top(const size_t stack_id) const { return values[IndexOfTop(stack_id)]; }
 
   bool IsFull(const size_t stack_id) const {
     return sizes[stack_id] == max_stack_size;
   }
 
-  bool IsEmpty(const size_t stack_id) const {
-    return sizes[stack_id] == 0;
-  }
+  bool IsEmpty(const size_t stack_id) const { return sizes[stack_id] == 0; }
 
 private:
   size_t IndexOfTop(const size_t stack_id) const {

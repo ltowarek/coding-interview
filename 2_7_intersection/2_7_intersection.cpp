@@ -6,17 +6,15 @@
 
 #include "gtest/gtest.h"
 
-template <class T>
-struct Node {
+template <class T> struct Node {
   Node(T _data) : next(nullptr), data(_data) {}
 
-  Node* next;
+  Node *next;
   T data;
 };
 
-template <class T>
-Node<T>* Intersection(Node<T> &l1, Node<T> &l2) {
-  auto *output = static_cast<Node<T>*>(nullptr);
+template <class T> Node<T> *Intersection(Node<T> &l1, Node<T> &l2) {
+  auto *output = static_cast<Node<T> *>(nullptr);
 
   auto *current_l1 = &l1;
   auto l1_length = 0;

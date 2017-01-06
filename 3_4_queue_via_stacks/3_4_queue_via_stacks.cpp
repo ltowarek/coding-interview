@@ -1,15 +1,12 @@
 // Queue via Stacks: Implement a MyQueue class which implements a queue using
 // two stacks.
 
-#include <stack>
 #include "gtest/gtest.h"
+#include <stack>
 
-template <class T>
-class MyQueue {
+template <class T> class MyQueue {
 public:
-  void Push(const T &data) {
-    s1.push(data);
-  }
+  void Push(const T &data) { s1.push(data); }
 
   void Pop() {
     ReverseStack();

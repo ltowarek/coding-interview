@@ -1,11 +1,10 @@
 // Remove Dups: Write code to remove duplicates from an unsorted linked list.
 // How would you solve this problem if a temporary buffer is not allowed?
 
-#include <forward_list>
 #include "gtest/gtest.h"
+#include <forward_list>
 
-template <class T>
-void RemoveDuplicates(std::forward_list<T> &list) {
+template <class T> void RemoveDuplicates(std::forward_list<T> &list) {
   auto current = list.begin();
   while (current != list.end()) {
     auto next = current;

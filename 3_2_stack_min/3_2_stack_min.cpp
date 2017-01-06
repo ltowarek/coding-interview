@@ -2,14 +2,13 @@
 // has a function min which returns the minimum element? Push, pop and min
 // should all operate in 0(1) time.
 
+#include "gtest/gtest.h"
 #include <limits>
 #include <stack>
-#include "gtest/gtest.h"
 
-template <class T>
-class MinStack {
+template <class T> class MinStack {
 public:
-  void Push(const T& data) {
+  void Push(const T &data) {
     if (data < Min()) {
       min_stack_.push(data);
     }
@@ -23,13 +22,9 @@ public:
     values_stack_.pop();
   }
 
-  T Top() const {
-    return values_stack_.top();
-  }
+  T Top() const { return values_stack_.top(); }
 
-  bool IsEmpty() const {
-    return values_stack_.empty();
-  }
+  bool IsEmpty() const { return values_stack_.empty(); }
 
   T Min() const {
     if (IsEmpty()) {

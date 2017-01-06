@@ -2,30 +2,26 @@
 // linked list of all the nodes at each depth (e.g., if you have a tree with
 // depth D, you'll have D linked lists).
 
-#include <list>
 #include "gtest/gtest.h"
+#include <list>
 
-template <class T>
-struct Node {
-  Node(T _data): data(_data), left(nullptr), right(nullptr) {}
+template <class T> struct Node {
+  Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
   T data;
   std::unique_ptr<Node<T>> left;
   std::unique_ptr<Node<T>> right;
 };
 
-template <class T>
-struct BinaryTree {
-  BinaryTree(): root(nullptr) {}
-  BinaryTree(std::unique_ptr<Node<T>> _root): root(std::move(_root)) {}
+template <class T> struct BinaryTree {
+  BinaryTree() : root(nullptr) {}
+  BinaryTree(std::unique_ptr<Node<T>> _root) : root(std::move(_root)) {}
 
   std::unique_ptr<Node<T>> root;
 };
 
-template <class T>
-using List = std::list<Node<T>*>;
+template <class T> using List = std::list<Node<T> *>;
 
-template <class T>
-using VectorOfLists = std::vector<List<T>>;
+template <class T> using VectorOfLists = std::vector<List<T>>;
 
 template <class T>
 void CreateListOfDepths(Node<T> *node, VectorOfLists<T> &vector, int level) {
@@ -67,8 +63,7 @@ TEST(list_of_depths_test, Depth2) {
   auto n1 = std::make_unique<Node<int>>(1);
   auto n2 = std::make_unique<Node<int>>(2);
 
-  const auto expected = VectorOfLists<int>{{n0.get()},
-                                           {n1.get(), n2.get()}};
+  const auto expected = VectorOfLists<int>{{n0.get()}, {n1.get(), n2.get()}};
 
   n0->left = std::move(n1);
   n0->right = std::move(n2);
@@ -86,9 +81,10 @@ TEST(list_of_depths_test, Depth3) {
   auto n5 = std::make_unique<Node<int>>(5);
   auto n6 = std::make_unique<Node<int>>(6);
 
-  const auto expected = VectorOfLists<int>{{n0.get()},
-                                           {n1.get(), n2.get()},
-                                           {n3.get(), n4.get(), n5.get(), n6.get()}};
+  const auto expected =
+      VectorOfLists<int>{{n0.get()},
+                         {n1.get(), n2.get()},
+                         {n3.get(), n4.get(), n5.get(), n6.get()}};
 
   n1->left = std::move(n3);
   n1->right = std::move(n4);

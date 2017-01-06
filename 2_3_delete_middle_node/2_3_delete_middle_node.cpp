@@ -2,8 +2,8 @@
 // (i.e., any node but the first and last node, not necessarily the exact
 // middle) of a singly linked list, given only access to that node.
 
-#include <forward_list>
 #include "gtest/gtest.h"
+#include <forward_list>
 
 template <class T, class ForwardIterator>
 void DeleteNode(std::forward_list<T> list, ForwardIterator node) {

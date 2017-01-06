@@ -4,11 +4,10 @@
 // numbers and returns the sum as a linked list.
 // Suppose the digits are stored in forward order. Repeat the above problem.
 
-#include <forward_list>
 #include "gtest/gtest.h"
+#include <forward_list>
 
-template <class T>
-T GetNumber(const std::forward_list<T> &list) {
+template <class T> T GetNumber(const std::forward_list<T> &list) {
   auto output = 0;
   auto base = 1;
   auto current = list.begin();
@@ -20,8 +19,7 @@ T GetNumber(const std::forward_list<T> &list) {
   return output;
 }
 
-template <class T>
-std::forward_list<T> GetList(const T number) {
+template <class T> std::forward_list<T> GetList(const T number) {
   auto output = std::forward_list<T>{};
   auto base = number;
   do {
@@ -43,8 +41,7 @@ std::forward_list<T> SumLists(const std::forward_list<T> &l1,
   return GetList(l1_number + l2_number);
 }
 
-template <class T>
-size_t Length(const std::forward_list<T> &list) {
+template <class T> size_t Length(const std::forward_list<T> &list) {
   auto output = 0;
   auto current = list.begin();
   while (current != list.end()) {
@@ -62,10 +59,9 @@ void AddPadding(std::forward_list<T> &list, const size_t padding) {
 }
 
 template <class T, class ForwardIterator>
-std::pair<std::forward_list<T>, T> SumListsRecursively(const std::forward_list<T> &l1,
-                                                       const ForwardIterator &n1,
-                                                       const std::forward_list<T> &l2,
-                                                       const ForwardIterator &n2) {
+std::pair<std::forward_list<T>, T>
+SumListsRecursively(const std::forward_list<T> &l1, const ForwardIterator &n1,
+                    const std::forward_list<T> &l2, const ForwardIterator &n2) {
   if (n1 == l1.end() && n2 == l2.end()) {
     return std::make_pair(std::forward_list<T>{}, 0);
   }
@@ -95,7 +91,8 @@ std::forward_list<T> SumListsInForwardOrder(const std::forward_list<T> l1,
     AddPadding(tmp_l2, length_l1 - length_l2);
   }
 
-  auto result = SumListsRecursively(tmp_l1, tmp_l1.begin(), tmp_l2, tmp_l2.begin());
+  auto result =
+      SumListsRecursively(tmp_l1, tmp_l1.begin(), tmp_l2, tmp_l2.begin());
   auto &sum = result.first;
   auto &carry = result.second;
 

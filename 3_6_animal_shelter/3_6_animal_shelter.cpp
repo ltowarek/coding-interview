@@ -7,25 +7,19 @@
 // operations such as enqueue, dequeueAny, dequeueDog and dequeueCat. You may
 // use the built-in LinkedList data structure.
 
-#include <queue>
 #include "gtest/gtest.h"
+#include <queue>
 
 class Animal {
 public:
   Animal(const std::string &name) : name_(name), id_(-1) {}
   virtual ~Animal() {}
 
-  std::string name() const {
-    return name_;
-  }
+  std::string name() const { return name_; }
 
-  int id() const {
-    return id_;
-  }
+  int id() const { return id_; }
 
-  void id(int id) {
-    id_ = id;
-  }
+  void id(int id) { id_ = id; }
 
 protected:
   std::string name_;
@@ -47,11 +41,11 @@ public:
 class AnimalShelter {
 public:
   void Enqueue(Animal &animal) {
-    if (auto *c = dynamic_cast<Cat*>(&animal)) {
+    if (auto *c = dynamic_cast<Cat *>(&animal)) {
       animal.id(id_);
       id_++;
       cats_.push(*c);
-    } else if (auto *d = dynamic_cast<Dog*>(&animal)) {
+    } else if (auto *d = dynamic_cast<Dog *>(&animal)) {
       animal.id(id_);
       id_++;
       dogs_.push(*d);
